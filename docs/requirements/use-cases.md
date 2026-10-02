@@ -2451,7 +2451,7 @@ Details of a peer evaluation: The instructor may choose to see more details of o
 **Date Created:**
 **Primary Actor:** instructor
 **Secondary Actors:**
-**Trigger:** The instructor indicates to send a reminder nudge to the students in her course section who have not yet submitted a given week's weekly activity report or peer evaluation.
+**Trigger:** The instructor indicates to send a reminder nudge to the students in her course section who have not yet submitted.
 **Description:** The instructor wants to remind only the students who are still missing a weekly activity report or a peer evaluation for a given week, so that she can prompt the stragglers without re-emailing students who have already submitted.
 
 **Preconditions:**
@@ -2466,7 +2466,7 @@ Details of a peer evaluation: The instructor may choose to see more details of o
 2. The system asks the instructor to specify the week to check and which item(s) — weekly activity report, peer evaluation, or both — to check for that week.
 3. The instructor specifies the week and the item(s).
 4. The system determines the non-submitters for the specified week and item(s) according to the "Non-submitter determination" defined in the Associated Information of this use case, and displays them to the instructor, each tagged with which of the requested item(s) she is missing.
-5. The instructor selects which of the displayed students to nudge — sending a selected student every item she is tagged as missing — or selects all of them, and confirms.
+5. The instructor selects which of the displayed students to nudge (sending each selected student every item she is tagged as missing), or selects all of them, and confirms.
 6. The system sends each selected student a reminder email naming the item(s) she personally has not yet submitted for that week, according to the "Nudge email content" defined in the Associated Information of this use case, subject to BR-nudge-rate-limit.
 7. The system reports to the instructor how many nudges were sent, and which, if any, were skipped and why.
 8. Use case ends.
@@ -2481,7 +2481,7 @@ Details of a peer evaluation: The instructor may choose to see more details of o
 - **4a. No student is a non-submitter for the specified week and item(s):**
   - 4a1. The system informs the instructor that every eligible student has already submitted, and the use case ends.
 - **4b. A student who would otherwise be checked is not currently assigned to a team, or has been deactivated:**
-  - 4b1. The system does not count her as a non-submitter for either item — she cannot act on a reminder either way (BR-team-assignment-required, BR-student-lifecycle) — and does not display her in the list or in the step 7 summary; unlike the recorded skips of 6a and 6b, this exclusion is silent.
+  - 4b1. The system does not count her as a non-submitter for either item and does not display her in the step 4 list or the step 7 summary (BR-team-assignment-required, BR-student-lifecycle).
 - **6a. A selected student was already sent a manual nudge for one of the requested items earlier that day:**
   - 6a1. The system does not send that item's nudge to her again, and records the skip, with the reason, in the step 7 summary (BR-nudge-rate-limit).
 - **6b. The mail server rejects a selected student's address:**
@@ -2494,8 +2494,8 @@ Details of a peer evaluation: The instructor may choose to see more details of o
 **Associated Information:**
 
 Non-submitter determination:
-- Weekly activity report: a student is a non-submitter for week W if she currently has no activity recorded in her weekly activity report for week W. This is based on her current records, not her submission history — a student who added activities for week W and later deleted all of them is a non-submitter again, the same as a student who never submitted, consistent with the completion status already shown by UC-WAR-team-war-report: Generate a WAR report of a team. A weekly activity report may be checked for any past or current active week; it is not gated by the peer-evaluation submission window (BR-active-weeks).
-- Peer evaluation: a student is a non-submitter for week W if she has not submitted a peer evaluation rating every one of her teammates as of week W (herself included), per the all-teammates-at-once submission of UC-EVA-submit-evaluation: Submit a peer evaluation for the previous week. The roster checked is fixed to week W, not to the team as it stands on the day the nudge is checked, so a membership change after week W neither creates nor erases a non-submitter. Because that submission is all-or-nothing, this is equivalent to checking whether she evaluated any one of those teammates for week W — the test UC-EVA-section-evaluation-report already applies. Peer evaluations cannot be deleted once submitted, so a submitted-then-withdrawn case does not arise for this item.
+- Weekly activity report: a student is a non-submitter for week W if she currently has no activity recorded for week W, regardless of submission history — a student who added activities and later deleted all of them is a non-submitter again, consistent with the completion status UC-WAR-team-war-report already shows. Any past or current active week may be checked; a weekly activity report is not gated by the peer-evaluation submission window (BR-active-weeks).
+- Peer evaluation: a student is a non-submitter for week W if she has not submitted a peer evaluation rating every one of her teammates as of week W (herself included), per UC-EVA-submit-evaluation's all-teammates-at-once submission. The roster checked is her team as of week W, not as of the day the nudge is checked, so a membership change afterward neither creates nor erases a non-submitter. Peer evaluations cannot be deleted once submitted, so a submitted-then-withdrawn case does not arise for this item.
 - A student not currently assigned to a team is excluded from both determinations (BR-team-assignment-required): she cannot author either item, so there is nothing pending for her to be nudged about.
 
 Nudge email content: Addressed to the student by name and, unlike the scheduled reminder (FR-NOT-weekly-reminder), lists only the item(s) she personally has not yet submitted for the stated week, not everything due that day regardless of status. Delivered through the Gmail SMTP integration (CI-email-notifications).
