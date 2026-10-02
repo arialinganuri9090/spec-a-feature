@@ -2469,10 +2469,10 @@ Details of a peer evaluation: The instructor may choose to see more details of o
 5. The instructor selects which of the displayed students to nudge (sending each selected student every item she is tagged as missing), or selects all of them, and confirms.
 6. The system sends each selected student a reminder email naming the item(s) she personally has not yet submitted for that week, according to the "Nudge email content" defined in the Associated Information of this use case, subject to BR-nudge-rate-limit.
 7. The system reports to the instructor how many nudges were sent, and which, if any, were skipped and why.
-
+8. Use case ends.
 
 **Extensions:**
-- **3a. Peer evaluation is among the requested items, and the specified week is not available for peer evaluation** - either because it is not one of the course section's active weeks (BR-active-weeks) or because its one week peer-evaluation submission window has already closed up. (BR-evaluation-submission-window):
+- **3a. Peer evaluation is among the requested items, and the specified week is not available for peer evaluation** — either because it is not one of the course section's active weeks (BR-active-weeks) or because its one-week peer-evaluation submission window has already closed (BR-evaluation-submission-window):
   - 3a1. The system excludes peer evaluation from consideration for that week and informs the instructor why.
   - 3a2. If the weekly activity report was also requested, the flow continues at step 4 for the weekly activity report only; otherwise the system informs the instructor that nothing can be checked for that week, and the use case ends.
 - **3b. Input validation rule violation (e.g., a future week, or neither item selected):**
