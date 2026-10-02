@@ -100,7 +100,7 @@ The note below is **not** the catalog. It records scope context only: a few Proj
 ### **UC-RUB-create-rubric: The course admin creates a rubric**
 
 **UC ID and Name:** UC-RUB-create-rubric: Create a rubric
-**Created By:**
+**Created By:** 
 **Date Created:**
 **Primary Actor:** course admin
 **Secondary Actors:**
@@ -2447,12 +2447,12 @@ Details of a peer evaluation: The instructor may choose to see more details of o
 ### **UC-NOT-nudge-non-submitters: The instructor sends a reminder nudge to the students who have not submitted**
 
 **UC ID and Name:** UC-NOT-nudge-non-submitters: Send a reminder nudge to the students who have not submitted
-**Created By:**
-**Date Created:**
+**Created By:** Aria Linganuri
+**Date Created:** 10/1/26
 **Primary Actor:** instructor
 **Secondary Actors:**
-**Trigger:** The instructor indicates to send a reminder nudge to the students in her course section who have not yet submitted.
-**Description:** The instructor wants to remind only the students who are still missing a weekly activity report or a peer evaluation for a given week, so that she can prompt the stragglers without re-emailing students who have already submitted.
+**Trigger:** The instructor indicates to send a reminder nudge to the students in his/her course section who have not yet submitted.
+**Description:** The instructor wants to remind only the students who are still missing a weekly activity report or a peer evaluation for a given week, so that she/he can prompt the stragglers without re-emailing students who have already submitted.
 
 **Preconditions:**
 - PRE-1. The instructor is logged into the system.
@@ -2469,10 +2469,10 @@ Details of a peer evaluation: The instructor may choose to see more details of o
 5. The instructor selects which of the displayed students to nudge (sending each selected student every item she is tagged as missing), or selects all of them, and confirms.
 6. The system sends each selected student a reminder email naming the item(s) she personally has not yet submitted for that week, according to the "Nudge email content" defined in the Associated Information of this use case, subject to BR-nudge-rate-limit.
 7. The system reports to the instructor how many nudges were sent, and which, if any, were skipped and why.
-8. Use case ends.
+
 
 **Extensions:**
-- **3a. Peer evaluation is among the requested items, and the specified week is not available for peer evaluation** — either because it is not one of the course section's active weeks (BR-active-weeks) or because its one-week peer-evaluation submission window has already closed (BR-evaluation-submission-window):
+- **3a. Peer evaluation is among the requested items, and the specified week is not available for peer evaluation** - either because it is not one of the course section's active weeks (BR-active-weeks) or because its one week peer-evaluation submission window has already closed up. (BR-evaluation-submission-window):
   - 3a1. The system excludes peer evaluation from consideration for that week and informs the instructor why.
   - 3a2. If the weekly activity report was also requested, the flow continues at step 4 for the weekly activity report only; otherwise the system informs the instructor that nothing can be checked for that week, and the use case ends.
 - **3b. Input validation rule violation (e.g., a future week, or neither item selected):**
@@ -2500,7 +2500,7 @@ Non-submitter determination:
 
 Nudge email content: Addressed to the student by name and, unlike the scheduled reminder (FR-NOT-weekly-reminder), lists only the item(s) she personally has not yet submitted for the stated week, not everything due that day regardless of status. Delivered through the Gmail SMTP integration (CI-email-notifications).
 
-**Related Use Cases:** UC-WAR-team-war-report: Generate a WAR report of a team; UC-EVA-section-evaluation-report: Generate a peer evaluation report of the entire course section (both already surface non-submitters as part of their report content; this use case acts on that same information). UC-EVA-submit-evaluation: Submit a peer evaluation for the previous week; UC-WAR-manage-activities: Manage activities in a weekly activity report (these define what counts as "submitted" for each item).
+**Related Use Cases:** UC-WAR-team-war-report: Generate a WAR report of a team; UC-EVA-section-evaluation-report: Generate a peer evaluation report of the entire course section (both already surface non-submitters as part of their report content; this use case acts on that same information). UC-EVA-submit-evaluation: Submit a peer evaluation for the previous week; UC-WAR-manage-activities: Manage activities in a weekly activity report (these defines what counts as "submitted" for each item).
 **Assumptions:**
 **Open Issues:**
 
